@@ -4,68 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Management System</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            background: #f9f9f9;
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
-            margin-right: 10px;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        form {
-            margin-bottom: 20px;
-        }
-        input[type="text"], input[type="number"], select {
-            padding: 5px;
-            margin-right: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        button {
-            padding: 5px 10px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-    </style>
+    <!-- Referencing CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Order Management System</h1>
 
-    <!-- 搜索表单 -->
+    <!-- Search form -->
     <form method="GET" action="{{ url_for('home') }}">
         <input type="text" name="search" placeholder="Search by customer or product" value="{{ search }}">
         <button type="submit">Search</button>
     </form>
 
-    <!-- 添加订单链接 -->
+    <!-- Add order link -->
     <a href="{{ url_for('add_order') }}">Add New Order</a>
+	<a href="{{ url_for('bulk_edit_order') }}">Bulk Edit Order</a>
 
-    <!-- 订单列表 -->
+    <!-- Order List -->
     <ul>
         {% for order in orders %}
             <li>
@@ -76,9 +31,12 @@
         {% endfor %}
     </ul>
 
-    <!-- 无订单时的提示信息 -->
+    <!-- Prompt message when there is no order -->
     {% if search and not orders %}
         <p>No orders found.</p>
     {% endif %}
+
+    <!-- Reference JavaScript Files -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

@@ -48,6 +48,10 @@ def add_order():
 
     return render_template('add_order.html')
 
+@app.route('/bulk-edit', methods=['GET', 'POST'])
+def bulk_edit_order():
+    return render_template('add_order.html')
+
 @app.route('/update/<int:order_id>', methods=['GET', 'POST'])
 def update_order(order_id):
     order = Order.query.get_or_404(order_id)
